@@ -1,0 +1,46 @@
+---
+
+import { Image,Picture } from "astro:assets";
+import Layout from "src/layouts/Layout.astro";
+import post05Img from '@images/post-05.png';
+
+---
+
+<Layout title="Imagenes">
+
+    <h1 class=" text-5xl text-white" >Imagenes</h1>
+    <img loading="eager" src="/assets/images/post-05.png" width="250" height="250" >
+    <Image src={post05Img} width="250" height="250" alt={'Imagen del post'}  />
+    <Image style={{width:'250px',height:'250px'}} src={post05Img} width="500" height="500" alt={'Imagen del post'}  />
+    <h1>Queality Low</h1>
+    <Image quality='low' src={post05Img} width="250" height="250" alt={'Imagen del post'}  />
+    
+    <h1 >Queality High</h1>
+    <Image quality='High' src={post05Img} width="250" height="250" alt={'Imagen del post'}  />
+    
+    <h1 >Formatos</h1>
+    <Image format="avif" src={post05Img} width="250" height="250" alt={'Imagen del post'}  />
+    
+     
+    <h1 >Picture</h1>
+    <Picture formats={['webp','avif','jpeg']} src={post05Img} width="250" height="250" alt={'Imagen del post'}  />
+    <h1 >Widhts</h1>
+    <Picture widths={[250,540,720,post05Img.width]} src={post05Img} width="250" height="250" alt={'Imagen del post'}  />
+    <h1 >Densities</h1>
+    <Picture width={post05Img.width/2} densities={[1.5,2]} src={post05Img} width="250" height="250" alt={'Imagen del post'}  />
+    
+    <div style={{
+        height:'3000px'
+    }}>
+
+    </div>
+    <img loading="lazy" src="/assets/images/post-05.png" width="250" height="250" >
+</Layout>
+
+<style>
+    h1 {
+       color: white;
+       margin-top: 30px;
+    }
+
+</style>

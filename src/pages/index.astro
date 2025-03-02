@@ -1,0 +1,39 @@
+---
+import Welcome from '../components/Welcome.astro';
+import Layout from '../layouts/Layout.astro';
+import { siteConfig } from '../config/site-config';
+import { getCollection } from 'astro:content';
+import TypeBlogPost from 'src/components/TypeBlogPost.astro';
+
+// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
+// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+
+const blogPosts = await getCollection('blog',(post)=>post.data.isDraft ===false);
+
+---
+
+<Layout title='El blog de Dan'>
+<!-- component -->
+<section class="bg-white dark:bg-gray-900">
+    <div class="container px-6 py-10 mx-auto">
+        <h1 class="text-3xl font-semibold text-gray-800 capitalize lg:text-4xl dark:text-white">{siteConfig.title}</h1>
+
+
+        <a href="/blog/1" class="text-blue-500 hover:underline">Blog paginado</a>
+        <a href="/authors" class="text-blue-500 hover:underline">Blog paginado</a>
+         <div class="grid grid-cols-1 gap-8 mt-8 md:mt-16 md:grid-cols-2">
+        {
+			blogPosts.map(post=><TypeBlogPost post={post}/>)
+		} 
+		
+        </div> 
+    </div>
+</section>
+</Layout>
+
+<style >
+    /* a {
+      @apply text-blue-500 hover:underline;
+    } */
+  
+  </style>
